@@ -7,8 +7,7 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
-# Environment variables
-.env
+
 
 # 
 /uploads
@@ -31,5 +30,3 @@ dist-ssr
 *.sln
 *.sw?
 
-# Exclude .env from being tracked
-/.env
