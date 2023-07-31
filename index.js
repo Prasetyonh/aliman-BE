@@ -31,7 +31,7 @@ app.use((req, res, next) => {
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
-app.use('/uploads', express.static('uploads'));
+app.use('/public', express.static('public'));
 app.use(router);
 
 const startServer = async () => {

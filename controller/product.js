@@ -44,7 +44,7 @@ export const getProductByid = async (req, res) => {
 // Konfigurasi multer
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads/');
+    cb(null, 'public/');
   },
   filename: (req, file, cb) => {
     const ext = path.extname(file.originalname);
@@ -88,7 +88,7 @@ export const addProduct = async (req, res) => {
       for (const file of files) {
         const ext = path.extname(file.originalname);
         const fileName = file.filename;
-        const url = `${req.protocol}://${req.get('host')}/uploads/${fileName}`;
+        const url = `${req.protocol}://${req.get('host')}/public/${fileName}`;
         const allowedTypes = ['.png', '.jpg', '.jpeg'];
 
         if (!allowedTypes.includes(ext.toLowerCase())) {
@@ -210,7 +210,7 @@ export const editProductById = async (req, res) => {
       for (const file of files) {
         const ext = path.extname(file.originalname);
         const fileName = file.filename;
-        const url = `${req.protocol}://${req.get('host')}/uploads/${fileName}`;
+        const url = `${req.protocol}://${req.get('host')}/public/${fileName}`;
         const allowedTypes = ['.png', '.jpg', '.jpeg'];
 
         if (!allowedTypes.includes(ext.toLowerCase())) {
