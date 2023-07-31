@@ -10,6 +10,13 @@ import router from './routes/index.js';
 const app = express();
 const { PORT } = process.env;
 
+app.use((req, res, next) => {
+  res.setHeader(
+    'Content-Security-Policy',
+    "default-src 'self' blob: data:; script-src 'self' 'unsafe-inline';"
+  );
+  next();
+});
 
 app.use(
   cors({
