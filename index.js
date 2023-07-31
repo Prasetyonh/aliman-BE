@@ -11,10 +11,7 @@ const app = express();
 const { PORT } = process.env;
 
 app.use((req, res, next) => {
-  res.setHeader(
-    'Content-Security-Policy',
-    "default-src 'self' blob: data:; script-src 'self' 'unsafe-inline';"
-  );
+  res.setHeader("Content-Security-Policy", "img-src 'self' http: https: data:;"); // Ganti ini sesuai kebutuhan Anda
   next();
 });
 
