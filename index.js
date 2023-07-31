@@ -28,10 +28,13 @@ app.use((req, res, next) => {
   // Atur header lain yang diperlukan sesuai kebutuhan aplikasi Anda
   next();
 });
+app.get('/', (req, res) => {
+  res.send('Hello World! Ini adalah API untuk Sistem Informasi Lapak Al-Iman Boga')
+})
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
-app.use('/public', express.static('public'));
+app.use('/uploads', express.static('uploads'));
 app.use(router);
 
 const startServer = async () => {
