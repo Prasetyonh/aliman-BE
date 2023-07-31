@@ -10,6 +10,7 @@ import router from './routes/index.js';
 const app = express();
 const { PORT } = process.env;
 
+
 app.use(
   cors({
     origin: 'https://alimanboga.prasetyonh.my.id',
@@ -19,6 +20,7 @@ app.use(
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', 'https://alimanboga.prasetyonh.my.id');
   res.setHeader('Access-Control-Allow-Credentials', true);
+  
   // Atur header lain yang diperlukan sesuai kebutuhan aplikasi Anda
   next();
 });
