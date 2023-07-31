@@ -12,12 +12,12 @@ const { PORT } = process.env;
 
 app.use(
   cors({
-    origin: 'http://localhost:3000',
+    origin: 'https://alimanboga.prasetyonh.my.id',
     credentials: true
   })
 );
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader('Access-Control-Allow-Origin', 'https://alimanboga.prasetyonh.my.id');
   res.setHeader('Access-Control-Allow-Credentials', true);
   // Atur header lain yang diperlukan sesuai kebutuhan aplikasi Anda
   next();
