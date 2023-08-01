@@ -3,7 +3,6 @@ import { Image, Product } from '../models/productModel.js';
 import { User } from '../models/userModels.js';
 import path from 'path';
 import { Op } from 'sequelize';
-import fs from 'fs';
 
 // mengambil semua data product
 export const getProducts = async (req, res) => {
@@ -41,20 +40,8 @@ export const getProductByid = async (req, res) => {
     res.status(500).json({ errorMessage: error.message });
   }
 };
+const storage = multer.memoryStorage(); // Store the file data in memory instead of disk
 
-// Konfigurasi multer
-const storage = multer.diskStorage({
-  destination: (req, file, cb) => {
-    cb(null, path.join(process.cwd(), 'uploads'));
-  },
-  filename: (req, file, cb) => {
-    const ext = path.extname(file.originalname);
-    const fileName = `${Date.now()}${ext}`;
-    cb(null, fileName);
-  }
-});
-
-// Konfigurasi multer
 export const upload = multer({ storage: storage });
 
 // menambahkan data
@@ -100,24 +87,19 @@ export const addProduct = async (req, res) => {
           return res.status(422).json({ errorMessage: 'Ukuran gambar harus kurang dari 5 MB' });
         }
 
-        const data = fs.readFileSync(file.path); // Read the file as a Buffer
-
         imageUrls.push(url);
 
+        // Save the file data into the database
         await Image.create({
           filename: fileName,
-          data: data, // Save the file data as binary data in the database
+          data: file.buffer, // Store the file data in the 'data' column as a buffer
           productId: product.id,
           url: url
         });
-
-        // Delete the temporary file after saving it to the database
-        fs.unlinkSync(file.path);
       }
 
       res.json({
         message: 'Produk berhasil ditambahkan'
-        // imageUrls: imageUrls
       });
     } else {
       res.json({
