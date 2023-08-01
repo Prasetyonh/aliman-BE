@@ -39,11 +39,15 @@ export const Image = db.define(
   {
     id: {
       type: DataTypes.UUID,
-      defaultValue: Sequelize.UUIDV4,
+      defaultValue: DataTypes.UUIDV4,
       primaryKey: true
     },
     filename: {
       type: DataTypes.STRING
+    },
+    data: {
+      type: DataTypes.BLOB('long'), // Use BLOB type to store binary data
+      allowNull: false
     },
     url: {
       type: DataTypes.STRING

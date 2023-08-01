@@ -3,6 +3,7 @@ import { Image, Product } from '../models/productModel.js';
 import { User } from '../models/userModels.js';
 import path from 'path';
 import { Op } from 'sequelize';
+import fs from 'fs';
 
 // mengambil semua data product
 export const getProducts = async (req, res) => {
@@ -87,7 +88,7 @@ export const addProduct = async (req, res) => {
       const imageUrls = [];
       for (const file of files) {
         const ext = path.extname(file.originalname);
-        const fileName = file.filename;
+        const fileName = `${Date.now()}${ext}`;
         const url = `${req.protocol}://${req.get('host')}/uploads/${fileName}`;
         const allowedTypes = ['.png', '.jpg', '.jpeg'];
 
@@ -99,14 +100,19 @@ export const addProduct = async (req, res) => {
           return res.status(422).json({ errorMessage: 'Ukuran gambar harus kurang dari 5 MB' });
         }
 
+        const data = fs.readFileSync(file.path); // Read the file as a Buffer
+
         imageUrls.push(url);
 
         await Image.create({
           filename: fileName,
-          data: file.buffer,
+          data: data, // Save the file data as binary data in the database
           productId: product.id,
           url: url
         });
+
+        // Delete the temporary file after saving it to the database
+        fs.unlinkSync(file.path);
       }
 
       res.json({
