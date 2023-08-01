@@ -45,10 +45,6 @@ export const Image = db.define(
     filename: {
       type: DataTypes.STRING
     },
-    data: {
-      type: DataTypes.BLOB('long'), // Use BLOB data type to store file data as a buffer
-      allowNull: false
-    },
     url: {
       type: DataTypes.STRING
     },
