@@ -11,26 +11,26 @@ const app = express();
 const { PORT } = process.env;
 
 app.use((req, res, next) => {
-  res.setHeader("Content-Security-Policy", "img-src 'self' http: https: data:;"); // Ganti ini sesuai kebutuhan Anda
+  res.setHeader('Content-Security-Policy', "img-src 'self' http: https: data:;"); // Ganti ini sesuai kebutuhan Anda
   next();
 });
 
 app.use(
   cors({
-    origin: 'https://alimanboga.prasetyonh.my.id',
+    origin: 'https://alimanboga.my.id',
     credentials: true
   })
 );
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://alimanboga.prasetyonh.my.id');
+  res.setHeader('Access-Control-Allow-Origin', 'https://alimanboga.my.id');
   res.setHeader('Access-Control-Allow-Credentials', true);
-  
+
   // Atur header lain yang diperlukan sesuai kebutuhan aplikasi Anda
   next();
 });
 app.get('/', (req, res) => {
-  res.send('Hello World! Ini adalah API untuk Sistem Informasi Lapak Al-Iman Boga')
-})
+  res.send('Hello World! Ini adalah API untuk Sistem Informasi Lapak Al-Iman Boga');
+});
 app.use(express.json());
 app.use(cookieParser());
 app.use(express.urlencoded({ extended: true }));
