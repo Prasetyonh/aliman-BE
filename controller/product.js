@@ -44,7 +44,7 @@ export const getProductByid = async (req, res) => {
 // Konfigurasi multer
 const storage = multer.diskStorage({
   destination: (req, file, cb) => {
-    cb(null, 'uploads/');
+    cb(null, path.join(process.cwd(), 'uploads'));
   },
   filename: (req, file, cb) => {
     const ext = path.extname(file.originalname);
@@ -248,7 +248,6 @@ export const editProductById = async (req, res) => {
     res.status(500).json({ errorMessage: error.message });
   }
 };
-
 
 export const searchProductByName = async (req, res) => {
   try {
