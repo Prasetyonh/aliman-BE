@@ -17,12 +17,12 @@ app.use((req, res, next) => {
 
 app.use(
   cors({
-    origin: 'https://alimanboga.my.id',
+    origin: 'https://alimanboga.informasi.link',
     credentials: true
   })
 );
 app.use((req, res, next) => {
-  res.setHeader('Access-Control-Allow-Origin', 'https://alimanboga.my.id');
+  res.setHeader('Access-Control-Allow-Origin', 'https://alimanboga.informasi.link');
   res.setHeader('Access-Control-Allow-Credentials', true);
 
   // Atur header lain yang diperlukan sesuai kebutuhan aplikasi Anda
