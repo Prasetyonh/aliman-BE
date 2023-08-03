@@ -1,7 +1,7 @@
 import { Sequelize } from 'sequelize';
 import mysql2 from 'mysql2'; // Needed to fix sequelize issues with WebPack
 
-const db = new Sequelize('alimanbo_aliman', 'alimanbo_alimanbo', '@Alimanbo.12345', {
+const db = new Sequelize('alimanbo_boga', 'alimanbo_alimanbo', '@Alimanbo.12345', {
   host: 'alimanboga.my.id',
   dialect: 'mysql',
   dialectModule: mysql2 // Needed to fix sequelize issues with WebPack
